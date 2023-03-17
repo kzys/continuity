@@ -1,0 +1,21 @@
+task:
+  freebsd_instance:
+    cpu: 8
+    memory: 16G
+
+  matrix:
+    - name: FreeBSD 11.4
+      freebsd_instance:
+        image_family: freebsd-11-4
+    - name: FreeBSD 12.3
+      freebsd_instance:
+        image_family: freebsd-12-3
+    - name: FreeBSD 13.1
+      freebsd_instance:
+        image_family: freebsd-13-1
+
+  setup_script: |
+    pkg install -y go gmake
+  test_script: |
+    gmake test
+    gmake root-test
